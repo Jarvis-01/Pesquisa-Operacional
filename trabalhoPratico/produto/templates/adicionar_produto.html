@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ produto_form.as_p }}
+
+        <h3>Matérias-Primas</h3>
+        <div id="materia-prima-container"></div>
+        
+        <button type="button" onclick="addMateriaPrima()">Incluir Matéria-Prima</button>
+        <br>
+        <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <script>
+    function addMateriaPrima() {
+        const container = document.getElementById('materia-prima-container');
+
+        // Cria um novo div para a matéria-prima
+        const div = document.createElement('div');
+
+        // Cria o campo de seleção da matéria-prima
+        const label = document.createElement('label');
+        label.textContent = 'Matéria-Prima: ';
+        div.appendChild(label);
+
+        const select = document.createElement('select');
+        select.name = 'materia_prima';
+        select.required = true;
+        div.appendChild(select);
+
+        // Adiciona as opções ao select
+        const options = `{% for materia_prima in materias_primas %}<option value="{{ materia_prima.id }}">{{ materia_prima.nome }}</option>{% endfor %}`;
+        select.innerHTML = options;
+
+        // Cria o campo de entrada para a quantidade
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'quantidade_' + select.value;
+        input.placeholder = 'Quantidade';
+        input.required = true;
+        div.appendChild(input);
+
+        // Adiciona o div ao container
+        container.appendChild(div);
+
+        // Atualiza o nome do campo de quantidade quando a seleção muda
+        select.addEventListener('change', function() {
+            input.name = 'quantidade_' + select.value;
+        });
+    }
+    </script>
+{% endblock %}

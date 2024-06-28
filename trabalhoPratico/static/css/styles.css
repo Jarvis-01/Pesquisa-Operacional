@@ -1,0 +1,31 @@
+.container-fluid{
+    padding: 0px;
+}
+
+.navbar{
+    border-bottom: 1px solid #3333;
+    margin-bottom: 20px;
+}
+
+.navbar-nav{
+    margin: auto;
+}
+
+.navbar-brand{
+    font-weight: bold;
+}
+
+.navbar-light .navbar-nav a.nav-link{
+    color: #3333;
+    letter-spacing: 1px;
+}
+
+main > h1{
+    color: green;
+}
+
+footer{
+    background-color: rgb(56, 56, 56);
+    color: white;
+    text-align: center;
+}
