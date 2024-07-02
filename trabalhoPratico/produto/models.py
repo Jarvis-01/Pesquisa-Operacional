@@ -5,7 +5,8 @@ from materiaPrima.models import MateriaPrima
 
 class Produto(models.Model):
     nome = models.CharField(max_length=100)
-    descricao = models.TextField(blank=True, null=True)
+    precoVenda = models.FloatField(null=True)
+    mao_de_obra = models.FloatField(null=True)
     materias_primas = models.ManyToManyField(MateriaPrima, through='ProdutoMateriaPrima')
 
     def __str__(self):

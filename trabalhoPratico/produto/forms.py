@@ -5,7 +5,7 @@ from materiaPrima.models import MateriaPrima
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['nome', 'descricao']
+        fields = ['nome', 'precoVenda', 'mao_de_obra']
 
 class ProdutoMateriaPrimaForm(forms.ModelForm):
     class Meta:

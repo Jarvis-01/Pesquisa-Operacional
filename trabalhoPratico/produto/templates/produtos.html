@@ -2,22 +2,24 @@
 
 
 {% block content %}
-    <h1> PRODUTOS </h1>
+    <h1> Produtos </h1>
     <table class="table">
         <thead>
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Detalhes</th>
+            <th scope="col">Valor de Venda</th>
+            <th scope="col">Valor da Mão de Obra</th>
           </tr>
         </thead>
         <tbody>
         {% for e in lista %}
           <tr>
             <td>{{ e.nome }}</td>
-            <td>{{ e.destricao}}</td>
+            <td>{{ e.precoVenda}}</td>
+            <td>{{ e.mao_de_obra }}</td>
           </tr>
         {% endfor %}
         </tbody>
       </table>
-      <a href="{% url 'adiciona' %}">adicionar produto</a>
+      <a href="{% url 'adiciona' %}">Cadastrar</a>
 {% endblock %}

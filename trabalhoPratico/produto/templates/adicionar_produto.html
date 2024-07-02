@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h1>Cadastro de Produto</h1>
     <form method="post">
         {% csrf_token %}
         {{ produto_form.as_p }}
