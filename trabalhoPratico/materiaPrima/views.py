@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render, redirect
 from . models import MateriaPrima
 from . forms import MateriaPrimaForm
 
@@ -25,3 +26,37 @@ def adicionar(request):
     return render(request, 'adicionar_materiaPrima.html', {'form': form})
 
 
+def editar(request, id):
+    materiaPrima = get_object_or_404(MateriaPrima, pk=id)
+    form = MateriaPrimaForm(instance=materiaPrima)
+
+    if(request.method == 'POST'):
+        form = MateriaPrimaForm(request.POST, instance=materiaPrima)
+
+        if(form.is_valid()):
+            materiaPrima.save()
+            return redirect('../')
+        else:
+            return render(request, 'editar_materiaPrima.html', {'form': form, 'materiaPrima': materiaPrima})
+
+    else:
+        return render(request, 'editar_materiaPrima.html', {'form': form, 'materiaPrima': materiaPrima})
+    
+def detalhe(request,pk):
+    print("Primary Key {}".format(pk))
+    try:
+        materiasPrimas = MateriaPrima.objects.filter(pk=pk)
+        print(materiasPrimas.values())
+        
+    except materiasPrimas.DoesNotExist:
+        raise Http404('Falha Não Existe')
+    # consulta
+    context = {
+        'materiasPrimas': materiasPrimas
+    }
+    return render(request, 'detalhe.html', context)
+
+def deletar(request, id):
+    materiaPrima = get_object_or_404(MateriaPrima, pk=id)
+    materiaPrima.delete()
+    return redirect('../')

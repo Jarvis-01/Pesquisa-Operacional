@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1>Mostrando informações</h1>
+    <ul>
+        <li>Nome: {{ produto.nome}}</li>
+        <li>Preço de Venda: {{ "R$" }} {{ produto.precoVenda|floatformat:2}}</li>
+        <li>Valor da mão de obra: {{ "R$" }} {{ produto.mao_de_obra|floatformat:2}}</li>
+    </ul>
+    <a href="../../editar/{{produto.pk}}">Editar</a>
+    <a href="../../deletar/{{produto.pk}}">Deletar</a>
+    
+    <h2>Lista de Materias-Primas:</h2>
+    {% for item in produto_materia_Prima %}
+
+        <ul>
+            <li>{{ item.materia_prima}}: {{ item.quantidade }}</li>
+        </ul>
+    {% endfor %}
+{% endblock %}

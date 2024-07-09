@@ -9,14 +9,16 @@
             <th scope="col">Nome</th>
             <th scope="col">Valor de Venda</th>
             <th scope="col">Valor da Mão de Obra</th>
+            <th scope="col">Detlhes</th>
           </tr>
         </thead>
         <tbody>
         {% for e in lista %}
           <tr>
             <td>{{ e.nome }}</td>
-            <td>{{ e.precoVenda}}</td>
-            <td>{{ e.mao_de_obra }}</td>
+            <td>{{ "R$" }} {{ e.precoVenda|floatformat:2}}</td>
+            <td>{{ "R$" }} {{ e.mao_de_obra|floatformat:2 }}</td>
+            <td><a href="detalhes/{{e.pk}}">Detalhes</a></td>
           </tr>
         {% endfor %}
         </tbody>

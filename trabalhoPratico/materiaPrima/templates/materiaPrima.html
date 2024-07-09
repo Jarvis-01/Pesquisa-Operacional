@@ -2,11 +2,12 @@
 
 
 {% block content %}
-    <h1> MATERIAS-PRIMAS </h1>
+    <h1> Matéria Prima </h1>
     <table class="table">
         <thead>
           <tr>
             <th scope="col">Nome</th>
+            <th scope="col">Preço</th>
             <th scope="col">Detalhes</th>
           </tr>
         </thead>
@@ -14,7 +15,8 @@
         {% for e in lista %}
           <tr>
             <td>{{ e.nome }}</td>
-            <td>{{ e.descricao}}</td>
+            <td>{{ "R$" }} {{ e.preco|floatformat:2 }}</td>
+            <td><a href="detalhe/{{e.pk}}">Detalhes</a></td>
         {% endfor %}
         </tbody>
       </table>

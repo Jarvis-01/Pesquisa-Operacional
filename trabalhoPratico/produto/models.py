@@ -15,7 +15,7 @@ class Produto(models.Model):
 class ProdutoMateriaPrima(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
     materia_prima = models.ForeignKey(MateriaPrima, on_delete=models.CASCADE)
-    quantidade = models.DecimalField(max_digits=10, decimal_places=2)
+    quantidade = models.FloatField(null=True)
 
     def __str__(self):
         return f'{self.produto} - {self.materia_prima.nome}: {self.quantidade}'

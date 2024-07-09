@@ -1,6 +1,36 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-    <h1> HOME </h1>
+    <h1>Home</h1>
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+    {% csrf_token %}
+    <label for="orcamento">Orçamento:</label>
+    <input type="range" name="orcamento" id="orcamento" min="1000" max="10000" step="100" value="5000" oninput="orcamentoOutput.value = orcamento.value">
+    <output id="orcamentoOutput">5000</output>
+    <button type="submit">Calcular</button>
+    </form>
+
+    <script>
+        document.getElementById('orcamento').addEventListener('input', function() {
+            document.getElementById('orcamentoOutput').value = this.value;
+        });
+    </script>
+
+    {% if objective_value %}
+    <h2>Resultado</h2>
+    <p>Valor da Função Objetivo: {{ objective_value }}</p>
+    <h3>Produção Ideal</h3>
+    <ul>
+        {% for nome, valor in variaveis.items %}
+            <li>{{ nome }}: {{ valor|floatformat:-2 }}</li>
+        {% endfor %}
+    </ul>
+    <p>Tempo de processamento: {{ wall_time }} ms</p>
+    <p>Iterações: {{ iterations }}</p>
+    {% endif %}
 {% endblock %}

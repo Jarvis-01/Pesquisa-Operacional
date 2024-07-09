@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1> Detalhes da Materia-Prima</h1>
+    {% for item in materiasPrimas %}
+
+        <ul>
+            <li>nome: {{ item.nome}}</li>
+            <li>disponível: {{ item.disponivel}}</li>
+            <li>Preço:{{ item.preco}}</li>
+        </ul>
+        <a href="../../editar/{{item.pk}}">Editar</a>
+        <a href="../../deletar/{{item.pk}}">Deletar</a>
+    {% endfor %}
+{% endblock %}
